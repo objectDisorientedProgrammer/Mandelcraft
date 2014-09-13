@@ -80,7 +80,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		if (src == generateWorld) {
+		/*if (src == generateWorld) {
 			clearMenu();
 			generationMenu();
 			this.setSize(785, 562);
@@ -100,7 +100,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 			mainMenu();
 			this.setSize(785, 562);
 			this.setSize(784, 562);
-		} else if (src == generate) {
+		} else */if (src == generate) {
 			sound.stop();
 			clearMenu();
 			this.setVisible(false);
@@ -110,11 +110,17 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		}
 	}
 	
+	/**
+	 * Clear the applet and repaint.
+	 */
 	public void clearMenu() {
 		this.removeAll();
 		repaint();
 	}
 	
+	/**
+	 * Clear the panel and repaint.
+	 */
 	public void clearPanel() {
 		pnl.removeAll();
 		repaint();
@@ -150,7 +156,15 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		back.setForeground(Color.LIGHT_GRAY);
 		back.setBackground(Color.BLACK);
 		generate.addActionListener(this);
-		back.addActionListener(this);
+		back.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent ae)
+			{
+				clearMenu();
+				mainMenu();
+			}
+		});
 		choice.addItemListener(this);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -356,7 +370,15 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		back.setMaximumSize(new Dimension(140, 40));
 		back.setForeground(Color.LIGHT_GRAY);
 		back.setBackground(Color.BLACK);
-		back.addActionListener(this);
+		back.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent ae)
+			{
+				clearMenu();
+				mainMenu();
+			}
+		});
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -377,9 +399,33 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		quit.setMaximumSize(new Dimension(140, 40));
 		quit.setForeground(Color.LIGHT_GRAY);
 		quit.setBackground(Color.BLACK);
-		generateWorld.addActionListener(this);
-		settings.addActionListener(this);
-		quit.addActionListener(this);
+		generateWorld.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent ae)
+			{
+				clearMenu();
+				generationMenu();
+			}
+		});
+		settings.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent ae)
+			{
+				clearMenu();
+				settingsMenu();
+			}
+		});
+		quit.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent ae)
+			{
+				clearMenu();
+				System.exit(0);
+			}
+		});
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 

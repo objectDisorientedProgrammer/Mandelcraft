@@ -23,7 +23,7 @@ public class WorldTester extends Applet {
 		System.out.println("Generating mandelbox...");
 		int offset = (worldSize * 16 - fractalSize)/2;
 		time = System.currentTimeMillis();
-		world.generateMandelbox("test", fractalSize, 2, 5, 4, 12, 4, offset, offset, offset);
+		//world.generateMandelbox("test", fractalSize, 2, 5, 4, 12, 4, offset, offset, offset);
 		time = ((System.currentTimeMillis() - time)/1000);
 		System.out.println("Time: "+time+"s \n");
 		
