@@ -1,5 +1,7 @@
 package voxelengine;
 
+import gui.MainMenuPanel;
+
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
@@ -72,7 +74,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		
 		// create menu
 		//mainMenu();
-		panel = new MainMenuPanel();
+		//panel = new MainMenuPanel();
 		this.add(panel);
 	}
 	
