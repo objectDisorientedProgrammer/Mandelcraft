@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 
@@ -224,7 +225,7 @@ public class SwingInterface extends JPanel {
 				    bi = null;
 				    g3 = null;
 				} catch (IOException e) {
-				    // nothing to do
+					JOptionPane.showMessageDialog(null, "Could not save file:\n" + e.getMessage(), "Save Error!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			if (keyboard.isKeyDown('P')) { // P is for pretty shadows
