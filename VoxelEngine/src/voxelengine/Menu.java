@@ -1,7 +1,5 @@
 package voxelengine;
 
-import gui.MainMenuPanel;
-
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
@@ -73,9 +71,9 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		sound.loop();
 		
 		// create menu
-		//mainMenu();
+		mainMenu();
 		//panel = new MainMenuPanel();
-		this.add(panel);
+		//this.add(panel);
 	}
 	
 	public void paint(Graphics g) {
@@ -85,7 +83,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		/*if (src == generateWorld) {
+		if (src == generateWorld) {
 			clearMenu();
 			generationMenu();
 			this.setSize(785, 562);
@@ -105,13 +103,13 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 			mainMenu();
 			this.setSize(785, 562);
 			this.setSize(784, 562);
-		} else */if (src == generate) {
+		} else if (src == generate) {
 			sound.stop();
 			clearMenu();
 			this.setVisible(false);
 			sound = getAudioClip(getCodeBase(), "game.au");
 			sound.loop();
-			SwingInterface.main(new String[]{worldSize.getText(), choice.getSelectedItem(), color.getSelectedItem(), size.getText(), minIt.getText(), maxIt.getText(), power.getText(), zoom.getText(), cutoff.getText()});
+			SwingInterface.instance(new String[]{worldSize.getText(), choice.getSelectedItem(), color.getSelectedItem(), size.getText(), minIt.getText(), maxIt.getText(), power.getText(), zoom.getText(), cutoff.getText()});
 		}
 	}
 	
@@ -161,7 +159,8 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		back.setForeground(Color.LIGHT_GRAY);
 		back.setBackground(Color.BLACK);
 		generate.addActionListener(this);
-		back.addActionListener(new ActionListener()
+		back.addActionListener(this);
+		/*back.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent ae)
@@ -169,7 +168,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 				clearMenu();
 				mainMenu();
 			}
-		});
+		});*/
 		choice.addItemListener(this);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -350,7 +349,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		color.addItem("magenta");
 		color.addItem("pink");
 		color.addItem("cyan");
-		color.addItem("black");
+		//color.addItem("black");
 		color.addItem("white");
 		color.addItem("gray");
 		color.addItem("darkGray");
@@ -375,7 +374,8 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		back.setMaximumSize(new Dimension(140, 40));
 		back.setForeground(Color.LIGHT_GRAY);
 		back.setBackground(Color.BLACK);
-		back.addActionListener(new ActionListener()
+		back.addActionListener(this);
+		/*back.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent ae)
@@ -383,7 +383,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 				clearMenu();
 				mainMenu();
 			}
-		});
+		});*/
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -404,7 +404,10 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		quit.setMaximumSize(new Dimension(140, 40));
 		quit.setForeground(Color.LIGHT_GRAY);
 		quit.setBackground(Color.BLACK);
-		generateWorld.addActionListener(new ActionListener()
+		generateWorld.addActionListener(this);
+		settings.addActionListener(this);
+		quit.addActionListener(this);
+		/*generateWorld.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent ae)
@@ -430,7 +433,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 				clearMenu();
 				System.exit(0);
 			}
-		});
+		});*/
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 

@@ -45,7 +45,7 @@ public class SwingInterface extends JPanel {
 			g.drawImage(src, 0, 0, this);
 	}
 
-	private class Worker extends SwingWorker<Void, Image> {
+	private class Worker extends SwingWorker<Void, Image>{
 
 		protected void process(List<Image> chunks) {
 			for (Image bufferedImage : chunks) {
@@ -161,7 +161,6 @@ public class SwingInterface extends JPanel {
 		}
 
 		private void process_input(double timestep) {
-			
 			if (keyboard.isKeyDown('A')) {
 				camera.x += speed * Math.cos(camera.rotY - Math.PI / 2);
 				camera.y += speed * Math.sin(camera.rotY - Math.PI / 2);
@@ -233,16 +232,85 @@ public class SwingInterface extends JPanel {
 			} else {
 				doShadows = false;
 			}
+			
 			camera.rotY = camera.rotY % (Math.PI * 2);
 			camera.rotX = Math.max(Math.min(camera.rotX, Math.PI), 0);
 			pixelScale = Math.max(Math.min(pixelScale, 10), 1);
 			castScale = Math.max(Math.min(castScale, 50), 1);
+		} // end process_input()
+	} // end inner class Worker
+/*
+	@Override
+	public void keyPressed(KeyEvent ke)
+	{
+		System.out.println("keyPressed: " + ke.getKeyChar());
+		switch(ke.getKeyCode())
+		{
+			case KeyEvent.VK_A:
+				camera.x += speed * Math.cos(camera.rotY - Math.PI / 2);
+				camera.y += speed * Math.sin(camera.rotY - Math.PI / 2);
+				break;
+			case KeyEvent.VK_D:
+				camera.x += speed * Math.cos(camera.rotY + Math.PI / 2);
+				camera.y += speed * Math.sin(camera.rotY + Math.PI / 2);
+				break;
+			case KeyEvent.VK_W:
+				camera.x += speed * Math.cos(camera.rotY);
+				camera.y += speed * Math.sin(camera.rotY);
+				break;
+			case KeyEvent.VK_S:
+				camera.x += speed * Math.cos(camera.rotY + Math.PI);
+				camera.y += speed * Math.sin(camera.rotY + Math.PI);
+				break;
+			case KeyEvent.VK_Q:	camera.z -= speed; break;
+			case KeyEvent.VK_E: camera.z += speed; break;
+			case KeyEvent.VK_J: camera.rotY -= Math.PI / 32; break;
+			case KeyEvent.VK_L: camera.rotY += Math.PI / 32; break;
+			case KeyEvent.VK_I: camera.rotX += Math.PI / 32; break;
+			case KeyEvent.VK_K: camera.rotX -= Math.PI / 32; break;
+			case KeyEvent.VK_EQUALS: ++pixelScale; break;
+			case KeyEvent.VK_MINUS: --pixelScale; break;
+			case KeyEvent.VK_Z: speed *= 0.90; break;
+			case KeyEvent.VK_X: speed *= 1.11; break;
+			case KeyEvent.VK_C:
+				System.out.println("Taking screenshot...");
+				try {
+				    // retrieve image
+					Renderer r = new Renderer(world, camera);
+					Image scr = createImage(r.renderG(X_BIG, Y_BIG, 1, castScale, true));
+					BufferedImage bi = new BufferedImage(X_BIG, Y_BIG, BufferedImage.TYPE_INT_ARGB);
+					Graphics2D g3 = bi.createGraphics();
+					g3.drawImage(scr, 0, 0, null);
+					g3.dispose();
+				    File outputfile = new File(worldName + "-"+Integer.toString((int) (Math.random()*1000))+".png");
+				    ImageIO.write(bi, "png", outputfile);
+				    r = null;
+				    scr = null;
+				    bi = null;
+				    g3 = null;
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Could not save file:\n" + e.getMessage(), "Save Error!", JOptionPane.ERROR_MESSAGE);
+				}
+			case KeyEvent.VK_P: doShadows = true; break;
+			default: JOptionPane.showMessageDialog(null, "Please use a different key.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+				break;
 		}
 	}
 
-	public static void main(String[] args) {
+	@Override
+	public void keyReleased(KeyEvent ke)
+	{
+		System.out.println("keyReleased: " + ke.getKeyChar());
+		if(ke.getKeyCode() == KeyEvent.VK_P)
+			doShadows = false;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent ke) { System.out.println("keyTyped: " + ke.getKeyChar()); }
+*/	
+	public static void instance(String[] args) {
 		arguments = args;
-		JFrame jf = new JFrame();
+		JFrame jf = new JFrame("Fractalishous");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.addKeyListener(keyboard);
 		jf.getContentPane().add(new SwingInterface(), BorderLayout.CENTER);

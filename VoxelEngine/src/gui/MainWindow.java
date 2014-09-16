@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.CardLayout;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -19,13 +20,15 @@ public class MainWindow
 		frame = new JFrame("Voxel Engine");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		panel = new JPanel(new CardLayout());
+		//panel = new JPanel(/*new CardLayout()*/);
+		
+		panel = new ImagePanel("");
 		
 		menu = new MainMenuPanel(this);
 		settings = new SettingsMenuPanel(this);
 		
-		panel.add(menu);
-		panel.add(settings);
+		//panel.add(menu);
+		//panel.add(settings);
 		
 		frame.add(panel);
 		
@@ -40,8 +43,10 @@ public class MainWindow
 	
 	public void setPanel(JPanel p)
 	{
-		menu = p;
-		frame.repaint();
+		frame.remove(panel);
+		panel = p;
+		frame.add(panel);
+		//frame.repaint();
 	}
 	
 	public void refresh()

@@ -292,6 +292,7 @@ public class World {
 				for (int z = 0; z < dsize; z++) {
 					dchunks[x][y][z] = decompressChunk(x + xco, y + yco, z + zco);
 				}
+		
 
 		// set world offsets
 		this.xco = xco;
