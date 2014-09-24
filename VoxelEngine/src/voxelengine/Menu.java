@@ -349,7 +349,7 @@ public class Menu extends Applet implements ActionListener, ItemListener, Runnab
 		color.addItem("magenta");
 		color.addItem("pink");
 		color.addItem("cyan");
-		//color.addItem("black");
+		//color.addItem("black"); // Shape does not show up with black as world background and color of voxels
 		color.addItem("white");
 		color.addItem("gray");
 		color.addItem("darkGray");

@@ -11,7 +11,6 @@ public class ImagePanel extends JPanel
 	 
     public ImagePanel(String path)
     {
-        
         // or load it in this class
         setLayout(null);
         // add components...
